@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beam Design</title>
+</head>
+<body>
+    <h1>Beam Design Tool</h1>
+    <p>This tool aids in the design of steel beams utilizing the LRFD method.</p>
+
+    <h2>How to use</h2>
+    <p>
+        <ol>
+            <li>Enter the length of the beam.</li>
+            <li>Enter the factored linear load applied to the beam.</li>
+            <!-- <li></li> -->
+            <!-- <li></li> -->
+        </ol>
+    </p>
+    <form action="">
+        <div>
+            <label for="length">Length: L = </label>
+            <input id="length" type="number" required min="0">
+            <label>ft</label>
+        </div>
+        <div>
+            <label for="linear-load">Linear Load: w<sub>u</sub> = </label>
+            <input id="linear-load" type="number" required min="0">
+            <label>kips/ft</label>
+        </div>
+        <div>
+            <label for="ult-moment">Ultimate Moment: M<sub>u</sub> = </label>
+            <input id="ult-moment" type="number" readonly>
+            <label>kip-ft</label>
+        </div>
+        <div>
+            <label for="moment-capacity">Required Moment Capcity: Phi*M<sub>n</sub> = </label>
+            <input id="moment-capacity" type="number">
+            <label>kip-ft</label>
+        </div>
+        <button>Calculate</button>
+    </form>
+
+    <p>&copy; Paul Numbers 2022</p>
+</body>
+</html>
