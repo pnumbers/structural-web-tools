@@ -32,9 +32,10 @@
             <label>kips/ft</label>
         </div>
         <div>
-            <label for="ult-moment">Ultimate Moment: M<sub>u</sub> = </label>
+            <!-- <label for="ult-moment">Ultimate Moment: M<sub>u</sub> = </label>
             <input id="ult-moment" type="number" readonly>
-            <label>kip-ft</label>
+            <label>kip-ft</label> -->
+            <p>Ultimate Moment: M<sub>u</sub> = <span id="ult-moment">N/A</span></p>
         </div>
         <div>
             <label for="moment-capacity">Required Moment Capcity: Phi*M<sub>n</sub> = </label>
@@ -42,7 +43,7 @@
             <label>kip-ft</label>
         </div>
         <div>
-            <p>Utilization Ratio: <span id="moment-util"></span></p>
+            <p>Utilization Ratio: <span id="moment-util">N/A</span></p>
         </div>
         <button id="calc-button" type="button">Calculate</button>
     </form>
