@@ -1,3 +1,5 @@
+import shapesJSON from './asic_shapes.json' assert {type:'json'}
+
 const lengthEntry = document.getElementById("length");
 const loadEntry = document.getElementById("linear-load");
 const ultMomentEl = document.getElementById("ult-moment");
