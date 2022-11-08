@@ -2,3 +2,7 @@ footer {
     position: fixed;
     bottom: 0px;
 }
+
+#kip-ft-units {
+    display: none;
+}

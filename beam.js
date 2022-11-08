@@ -4,13 +4,14 @@ const ultMomentEl = document.getElementById("ult-moment");
 const momentCapcityEntry = document.getElementById("moment-capacity");
 const calcButton = document.getElementById("calc-button");
 const momentUtilElement = document.getElementById("moment-util");
-
+const kipFtUnits = document.getElementById("kip-ft-units")
 
 function calculateMoment() {
     const length = lengthEntry.value;
     const linearLoad = loadEntry.value;
     const moment = linearLoad * (length ** 2) / 8;
     ultMomentEl.innerHTML = moment;
+    kipFtUnits.style.display = "inline"
     checkCapcity();
 }
 
