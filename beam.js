@@ -7,6 +7,19 @@ const momentCapcityEntry = document.getElementById("moment-capacity");
 const calcButton = document.getElementById("calc-button");
 const momentUtilElement = document.getElementById("moment-util");
 const kipFtUnits = document.getElementById("kip-ft-units")
+const shapeSelector = document.getElementById("shape-selector");
+
+function addShapesToDropDown(){
+    for (const shape in shapesJSON['W']) {
+       let option = document.createElement("option");
+        option.value = shape;
+        option.innerHTML = shape;
+        shapeSelector.appendChild(option)
+    }
+
+}
+
+addShapesToDropDown()
 
 function calculateMoment() {
     const length = lengthEntry.value;
