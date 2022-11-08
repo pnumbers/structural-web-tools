@@ -15,7 +15,8 @@ function calculateMoment() {
 }
 
 function checkCapcity() {
-    calcMomentUtilization();
+    util = calcMomentUtilization();
+    colorUtilization(util);
 }
 
 function calcMomentUtilization() {
@@ -23,7 +24,16 @@ function calcMomentUtilization() {
     const momentCapcity = momentCapcityEntry.value;
     let util = ultMoment / momentCapcity;
     momentUtilElement.innerHTML = util.toFixed(2);
+    return util;
+}
 
+function colorUtilization(util) {
+    if (util > 1.0) {
+        momentUtilElement.style.color = "red"
+    }
+    else {
+        momentUtilElement.style.color = "green"
+    }
 }
 
 calcButton.addEventListener("click", calculateMoment);
