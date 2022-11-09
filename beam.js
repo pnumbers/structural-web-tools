@@ -16,10 +16,7 @@ function addShapesToDropDown(){
         option.innerHTML = shape;
         shapeSelector.appendChild(option)
     }
-
 }
-
-addShapesToDropDown()
 
 function calculateMoment() {
     const length = lengthEntry.value;
@@ -31,7 +28,7 @@ function calculateMoment() {
 }
 
 function checkCapcity() {
-    util = calcMomentUtilization();
+    const util = calcMomentUtilization();
     colorUtilization(util);
 }
 
@@ -54,3 +51,4 @@ function colorUtilization(util) {
 
 calcButton.addEventListener("click", calculateMoment);
 
+addShapesToDropDown()
