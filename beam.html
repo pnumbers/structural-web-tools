@@ -35,20 +35,18 @@
                 <input id="linear-load" type="number" required min="0">
                 <label>kips/ft</label>
             </div>
+        </form>
+
             <div>
-                <!-- <label for="ult-moment">Ultimate Moment: M<sub>u</sub> = </label>
-                <input id="ult-moment" type="number" readonly>
-                <label>kip-ft</label> -->
                 <p>Ultimate Moment: M<sub>u</sub> = <span id="ult-moment">N/A</span> <span id="kip-ft-units">kip-ft</span></p>
             </div>
-            <div>
-                <label for="shape-selector">Select beam shape: </label>
-                <select id="shape-selector">
 
-                </select>
-            </div>
             <div>
                 <h3>Beam Properties</h3>
+                <div>
+                    <label for="shape-selector">Select beam shape: </label>
+                    <select id="shape-selector"></select>
+                </div>
                 <p>Z<sub>x</sub>: <span class="beam-prop" id="Zx"></span><span class="propUnits"> in<sup>3</sup></span></p>
                 <p>I<sub>x</sub>: <span class="beam-prop" id="Ix"></span><span class="propUnits"> in<sup>4</sup></span></p>
             </div>
@@ -65,7 +63,6 @@
                 <p>Utilization Ratio: <span id="moment-util">N/A</span></p>
             </div>
             <button id="calc-button" type="button">Calculate</button>
-        </form>
     </div>
     <footer>
         <p>&copy; Paul Numbers 2022</p>
