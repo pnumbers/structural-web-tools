@@ -3,7 +3,7 @@ import shapesJSON from './asic_shapes.json' assert {type:'json'}
 const lengthEntry = document.getElementById("length");
 const loadEntry = document.getElementById("linear-load");
 const ultMomentEl = document.getElementById("ult-moment");
-const momentCapcityEntry = document.getElementById("moment-capacity");
+const momentCapcityEl = document.getElementById("moment-capacity");
 const calcButton = document.getElementById("calc-button");
 const momentUtilElement = document.getElementById("moment-util");
 const kipFtUnits = document.getElementById("kip-ft-units")
@@ -43,8 +43,12 @@ function checkCapcity() {
 
 function calcMomentUtilization() {
     const ultMoment = parseFloat(ultMomentEl.innerHTML);
-    const momentCapcity = momentCapcityEntry.value;
-    let util = ultMoment / momentCapcity;
+    let momentCapacity = momentCapcityEl.innerHTML;
+    if (momentCapacity && momentCapacity !== 'N/A') {
+        momentCapacity = parseFloat(momentCapacity);
+    }
+    // const momentCapcity = parseFloat(momentCapcityEl.innerHTML);
+    let util = ultMoment / momentCapacity;
     momentUtilElement.innerHTML = util.toFixed(2);
     return util;
 }
@@ -69,8 +73,8 @@ function shapeSelected() {
     zxPropSpan.innerHTML = zx
     ixPropSpan.innerHTML = ix
 
-    const phiMn = calcFactoredMoment(zx, FY) / 12;
-
+    const phiMn = calcFactoredMoment(zx, FY) / 12; // kip-ft
+    momentCapcityEl.innerHTML = phiMn;
     // TODO: Change to fix type error
     // This currently works and properly displays the units
     // but it should be changed
