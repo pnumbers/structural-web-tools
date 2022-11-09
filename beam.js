@@ -12,6 +12,9 @@ const zxPropSpan = document.getElementById("Zx");
 const ixPropSpan = document.getElementById("Ix");
 const propUnits = document.getElementsByClassName("propUnits");
 
+// TODO: Change this to an input
+const FY = 50; //ksi
+
 function addShapesToDropDown(){
 // Adds the shapes to the drop down
     for (const shape in shapesJSON['W']) {
@@ -55,16 +58,18 @@ function colorUtilization(util) {
     }
 }
 
-function addShapeProperties() {
+function shapeSelected() {
     // Displays the selected beam's properties to the UI
     // and adds them to the DOM
     // TODO: Add beam to the DOM
     const beam = shapeSelector.value;
-    const zx = shapesJSON['W'][beam]['Zx'];
-    const ix = shapesJSON['W'][beam]['Ix'];
+    const zx = parseFloat(shapesJSON['W'][beam]['Zx']);
+    const ix = parseFloat(shapesJSON['W'][beam]['Ix']);
 
     zxPropSpan.innerHTML = zx
     ixPropSpan.innerHTML = ix
+
+    const phiMn = calcFactoredMoment(zx, FY) / 12;
 
     // TODO: Change to fix type error
     // This currently works and properly displays the units
@@ -72,6 +77,8 @@ function addShapeProperties() {
     for (const i in propUnits){
         propUnits[i].style.display = "inline";
     }
+
+
 }
 
 // Functions related to calculating the beam's moment
@@ -83,22 +90,23 @@ function calcPlasticMoment(zx, fy){
     return plasticMoment;
 }
 
-function calcNominalMoment(){
-    const zx = ; // in in^3
-    const fy = 50; // in ksi
+function calcNominalMoment(zx, fy){
+    // const zx = ; // in in^3
+    // const fy = 50; // in ksi
     const plasticMoment = calcPlasticMoment(zx, fy);
     const mn = Math.min(plasticMoment);
+    return mn;
 }
 
-function calcFactoredMoment(){
+function calcFactoredMoment(zx, fy){
     const phi = 0.9;
-    const mn = calcNominalMoment();
+    const mn = calcNominalMoment(zx, fy);
     const phiMn = phi * mn;
     return phiMn;
 }
 
 calcButton.addEventListener("click", calculateMoment);
-shapeSelector.addEventListener("change", addShapeProperties)
+shapeSelector.addEventListener("change", shapeSelected)
 
 
 addShapesToDropDown()
