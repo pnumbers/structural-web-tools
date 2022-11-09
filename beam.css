@@ -5,7 +5,7 @@ body {
     margin: 0px;
 }
 
-body, footer, h1, h2, h3, h4, h5, h6, p, ol, ul {
+body, footer, h1, h2, h3, h4, h5, h6, p, ol, ul, div{
     margin: 0px;
 }
 
@@ -37,4 +37,22 @@ footer p{
 
 .propUnits {
     display: none;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+#title-cont {
+    background-color: rgb(228, 228, 228);
+    
 }
