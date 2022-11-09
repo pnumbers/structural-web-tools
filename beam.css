@@ -1,8 +1,41 @@
+/* RESET */
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+body, footer, p {
+    margin: 0px;
+}
+
+/* Beam CSS */
+
 footer {
     position: fixed;
     bottom: 0px;
+    flex: flex;
+    width: 100%;
+    padding: 5px;
+    justify-content: center;
+    background-color: rgb(228, 228, 228);
+    margin: 0px
+}
+
+footer p{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #kip-ft-units {
+    display: none;
+}
+
+#calc-button {
+    margin-bottom: 0px
+}
+
+.propUnits {
     display: none;
 }

@@ -10,6 +10,7 @@ const kipFtUnits = document.getElementById("kip-ft-units")
 const shapeSelector = document.getElementById("shape-selector");
 const zxPropSpan = document.getElementById("Zx");
 const ixPropSpan = document.getElementById("Ix");
+const propUnits = document.getElementsByClassName("propUnits");
 
 function addShapesToDropDown(){
     for (const shape in shapesJSON['W']) {
@@ -58,6 +59,13 @@ function addShapeProperties() {
 
     zxPropSpan.innerHTML = zx
     ixPropSpan.innerHTML = ix
+
+    // TODO: Change to fix type error
+    // This currently works and properly displays the units
+    // but it should be changed
+    for (const i in propUnits){
+        propUnits[i].style.display = "inline";
+    }
 }
 
 calcButton.addEventListener("click", calculateMoment);
