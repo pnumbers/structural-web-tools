@@ -5,12 +5,11 @@ body {
     margin: 0px;
 }
 
-body, footer, p {
+body, footer, h1, h2, h3, h4, h5, h6, p, ol, ul {
     margin: 0px;
 }
 
 /* Beam CSS */
-
 footer {
     position: relative;
     bottom: 0px;
