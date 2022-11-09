@@ -8,6 +8,8 @@ const calcButton = document.getElementById("calc-button");
 const momentUtilElement = document.getElementById("moment-util");
 const kipFtUnits = document.getElementById("kip-ft-units")
 const shapeSelector = document.getElementById("shape-selector");
+const zxPropSpan = document.getElementById("Zx");
+const ixPropSpan = document.getElementById("Ix");
 
 function addShapesToDropDown(){
     for (const shape in shapesJSON['W']) {
@@ -49,6 +51,18 @@ function colorUtilization(util) {
     }
 }
 
+function addShapeProperties() {
+    const beam = shapeSelector.value;
+    const zx = shapesJSON['W'][beam]['Zx'];
+    const ix = shapesJSON['W'][beam]['Ix'];
+
+    zxPropSpan.innerHTML = zx
+    ixPropSpan.innerHTML = ix
+}
+
 calcButton.addEventListener("click", calculateMoment);
+shapeSelector.addEventListener("change", addShapeProperties)
+
 
 addShapesToDropDown()
+
