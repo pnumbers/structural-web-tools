@@ -13,6 +13,7 @@ const ixPropSpan = document.getElementById("Ix");
 const propUnits = document.getElementsByClassName("propUnits");
 
 function addShapesToDropDown(){
+// Adds the shapes to the drop down
     for (const shape in shapesJSON['W']) {
        let option = document.createElement("option");
         option.value = shape;
@@ -21,6 +22,8 @@ function addShapesToDropDown(){
     }
 }
 
+// Functions relating to the calculating the applied
+// moment
 function calculateMoment() {
     const length = lengthEntry.value;
     const linearLoad = loadEntry.value;
@@ -53,6 +56,9 @@ function colorUtilization(util) {
 }
 
 function addShapeProperties() {
+    // Displays the selected beam's properties to the UI
+    // and adds them to the DOM
+    // TODO: Add beam to the DOM
     const beam = shapeSelector.value;
     const zx = shapesJSON['W'][beam]['Zx'];
     const ix = shapesJSON['W'][beam]['Ix'];
@@ -66,6 +72,29 @@ function addShapeProperties() {
     for (const i in propUnits){
         propUnits[i].style.display = "inline";
     }
+}
+
+// Functions related to calculating the beam's moment
+// capacity
+function calcPlasticMoment(zx, fy){
+    // zx (in^3)
+    // fy (ksi)
+    const plasticMoment = zx * fy;
+    return plasticMoment;
+}
+
+function calcNominalMoment(){
+    const zx = ; // in in^3
+    const fy = 50; // in ksi
+    const plasticMoment = calcPlasticMoment(zx, fy);
+    const mn = Math.min(plasticMoment);
+}
+
+function calcFactoredMoment(){
+    const phi = 0.9;
+    const mn = calcNominalMoment();
+    const phiMn = phi * mn;
+    return phiMn;
 }
 
 calcButton.addEventListener("click", calculateMoment);
