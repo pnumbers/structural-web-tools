@@ -12,7 +12,7 @@ body, footer, p {
 /* Beam CSS */
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0px;
     flex: flex;
     width: 100%;
