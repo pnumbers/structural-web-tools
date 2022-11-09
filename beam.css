@@ -50,9 +50,20 @@ footer p{
 .center {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 #title-cont {
     background-color: rgb(228, 228, 228);
-    
+    margin: 10px;
+    border-radius: 10px;
+    /* text-align: center; */
+}
+
+.text-center {
+    text-align: center;
+}
+
+#how-to-cont {
+    margin: 30px 0px;
 }
