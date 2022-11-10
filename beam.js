@@ -1,5 +1,6 @@
 import shapesJSON from './asic_shapes.json' assert {type:'json'}
 
+// DOM Variables
 const lengthEntry = document.getElementById("length");
 const loadEntry = document.getElementById("linear-load");
 const ultMomentEl = document.getElementById("ult-moment");
@@ -12,9 +13,19 @@ const zxPropSpan = document.getElementById("Zx");
 const ixPropSpan = document.getElementById("Ix");
 const propUnits = document.getElementsByClassName("propUnits");
 
+
+// Global variables
 // TODO: Change this to an input
 const FY = 50; //ksi
 
+
+// Main script 
+addShapesToDropDown()
+
+calcButton.addEventListener("click", calculateMoment);
+shapeSelector.addEventListener("change", shapeSelected)
+
+// 
 function addShapesToDropDown(){
 // Adds the shapes to the drop down
     for (const shape in shapesJSON['W']) {
@@ -109,10 +120,3 @@ function calcFactoredMoment(zx, fy){
     const phiMn = phi * mn;
     return phiMn;
 }
-
-calcButton.addEventListener("click", calculateMoment);
-shapeSelector.addEventListener("change", shapeSelected)
-
-
-addShapesToDropDown()
-
