@@ -30,10 +30,14 @@ function addShapesToDropDown(){
 function calculateMoment() {
     const length = lengthEntry.value;
     const linearLoad = loadEntry.value;
-    const moment = linearLoad * (length ** 2) / 8;
-    ultMomentEl.innerHTML = moment;
-    kipFtUnits.style.display = "inline"
-    checkCapcity();
+    if (length === '' || linearLoad === ''){
+        alert('Enter a length and a load to calculate.');
+    } else {
+        const moment = linearLoad * (length ** 2) / 8;
+        ultMomentEl.innerHTML = moment;
+        kipFtUnits.style.display = "inline"
+        checkCapcity();
+    }
 }
 
 function checkCapcity() {
