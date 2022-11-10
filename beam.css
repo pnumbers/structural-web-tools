@@ -79,3 +79,16 @@ footer p{
 #inputs-cont {
     margin: 10px 5px;
 }
+
+#length, #linear-load {
+    width: 60px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.input-div {
+    display: flex;
+    /* justify-content: center; */
+    /* flex-direction: row; */
+}
+
