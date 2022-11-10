@@ -75,13 +75,10 @@ function shapeSelected() {
 
     const phiMn = calcFactoredMoment(zx, FY) / 12; // kip-ft
     momentCapcityEl.innerHTML = phiMn;
-    // TODO: Change to fix type error
-    // This currently works and properly displays the units
-    // but it should be changed
-    for (const i in propUnits){
+
+    for (let i=0; i < propUnits.length; i++){
         propUnits[i].style.display = "inline";
     }
-
 
 }
 
