@@ -1,4 +1,5 @@
 import shapesJSON from './asic_shapes.json' assert {type:'json'}
+import BeamWF from './BeamWF.js';
 
 // DOM Variables
 const lengthEntry = document.getElementById("length");
@@ -17,15 +18,19 @@ const propUnits = document.getElementsByClassName("propUnits");
 // Global variables
 // TODO: Change this to an input
 const FY = 50; //ksi
+const BEAM = new BeamWF();
+BEAM.setFy(FY);
 
 
 // Main script 
-addShapesToDropDown()
+addShapesToDropDown();
+shapeSelected();
 
 calcButton.addEventListener("click", calculateMoment);
-shapeSelector.addEventListener("change", shapeSelected)
+shapeSelector.addEventListener("change", shapeSelected);
 
-// 
+
+// Set up functions
 function addShapesToDropDown(){
 // Adds the shapes to the drop down
     for (const shape in shapesJSON['W']) {
@@ -82,8 +87,12 @@ function shapeSelected() {
     // and adds them to the DOM
     // TODO: Add beam to the DOM
     const beam = shapeSelector.value;
-    const zx = parseFloat(shapesJSON['W'][beam]['Zx']);
-    const ix = parseFloat(shapesJSON['W'][beam]['Ix']);
+    const shape_data = shapesJSON['W'][beam];
+    BEAM.setShape(shape_data);
+    const zx = BEAM.Zx;
+    const ix = BEAM.Ix;
+    // const zx = parseFloat(shapesJSON['W'][beam]['Zx']);
+    // const ix = parseFloat(shapesJSON['W'][beam]['Ix']);
 
     zxPropSpan.innerHTML = zx
     ixPropSpan.innerHTML = ix

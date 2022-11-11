@@ -1,7 +1,24 @@
 class BeamWF{
-    constructor(zx, fy){
-        this.zx = zx;
-        this.fy = fy;
+    constructor(shape_data, Fy = 50){
+        if (arguments.length > 0){
+            this.Fy = Fy;
+            this.setShape(shape_data)
+            // this.Zx = shape_data.Zx
+            // this.Ix = shape_data.Ix
+        }
+    }
+
+    setShape(shape_data){
+        this.Zx = shape_data.Zx;
+        this.Ix = shape_data.Ix;
+    }
+
+    setFy(Fy){
+        this.Fy = Fy;
+    }
+
+    setLength(beam_length){
+        this.beam_length = beam_length;
     }
 
     calcPlasticMoment(){
@@ -24,3 +41,6 @@ class BeamWF{
         return phiMn;
     }
 }
+
+
+export default BeamWF;
