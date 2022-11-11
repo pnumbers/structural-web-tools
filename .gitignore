@@ -102,3 +102,14 @@ dist
 
 # TernJS port file
 .tern-port
+
+#
+aisc-shapes-database-v15.0.xlsx
+aisc-shapes-database-v15.0.numbers
+aisc-shapes-database-v15.0.csv
+
+.vscode
+.DS_Store
+
+# test
+test.*
