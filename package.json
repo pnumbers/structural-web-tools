@@ -1,0 +1,19 @@
+{
+  "name": "structural-web-tools",
+  "version": "1.0.0",
+  "description": "A website for structural engineering realted design tools.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pnumbers/structural-web-tools.git"
+  },
+  "author": "pnumbers",
+  // "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pnumbers/structural-web-tools/issues"
+  },
+  "homepage": "https://github.com/pnumbers/structural-web-tools#readme"
+}
