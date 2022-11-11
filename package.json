@@ -11,9 +11,12 @@
     "url": "git+https://github.com/pnumbers/structural-web-tools.git"
   },
   "author": "pnumbers",
-  // "license": "ISC",
+  "license": "",
   "bugs": {
     "url": "https://github.com/pnumbers/structural-web-tools/issues"
   },
-  "homepage": "https://github.com/pnumbers/structural-web-tools#readme"
+  "homepage": "https://github.com/pnumbers/structural-web-tools#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
