@@ -10,3 +10,12 @@ body {
     background-color: white;
     border-radius: 10px;
 }
+
+#home-img {
+    max-height: 500px;
+}
+
+#img-cont {
+    display: flex;
+    justify-content: center;
+}
