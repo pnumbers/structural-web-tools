@@ -1,0 +1,12 @@
+body {
+    background-color: #4E8098;
+}
+
+#title-cont {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
