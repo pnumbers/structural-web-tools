@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.render('home.ejs');
 })
 
-app.get('/beam', (req, res)=>{
+app.get('/beam-design', (req, res)=>{
     res.render('beam.ejs')
 })
 
