@@ -13,6 +13,7 @@ const kipFtUnits = document.getElementById("kip-ft-units")
 const shapeSelector = document.getElementById("shape-selector");
 const zxPropSpan = document.getElementById("Zx");
 const ixPropSpan = document.getElementById("Ix");
+const lpPropSpan = document.getElementById("Lp");
 const propUnits = document.getElementsByClassName("propUnits");
 
 
@@ -22,10 +23,12 @@ const FY = 50; //ksi
 const BEAM = new BeamWF();
 BEAM.setFy(FY);
 
-
 // Main script 
 addShapesToDropDown();
 shapeSelected();
+
+BEAM.calcLp();
+console.log(BEAM);
 
 calcButton.addEventListener("click", calculateMoment);
 shapeSelector.addEventListener("change", shapeSelected);
@@ -92,11 +95,13 @@ function shapeSelected() {
     BEAM.setShape(shape_data);
     const zx = BEAM.Zx;
     const ix = BEAM.Ix;
+    const lp = BEAM.Lp;
     // const zx = parseFloat(shapesJSON['W'][beam]['Zx']);
     // const ix = parseFloat(shapesJSON['W'][beam]['Ix']);
 
     zxPropSpan.innerHTML = zx
     ixPropSpan.innerHTML = ix
+    lpPropSpan.innerHTML = lp
 
     const phiMn = calcFactoredMoment(zx, FY) / 12; // kip-ft
     momentCapcityEl.innerHTML = phiMn;
