@@ -21,23 +21,24 @@ class BeamWF{
 
         console.log(shape_data)
         
-        // TODO: Come back and make this a proper equation
+        // For WF beams, c = 1.0 always
         this.c = 1; 
+
         // Derived properties
         this.calcLp();
         this.calcLr();
-
-        // Change later
     }
 
+    // Set functions **********************************
     setFy(Fy){
         this.Fy = Fy;
     }
 
     setLength(beam_length){
-        this.beam_length = beam_length;
+        this.Lb = beam_length;
     }
-    // Properties Equations
+
+    // Properties Equations ***************************
     calcLp(){
         this.Lp = 1.76 * this.ry * Math.sqrt(this.E/this.Fy) / 12; // feet
     }
@@ -50,7 +51,7 @@ class BeamWF{
         this.Lr = 1.95 * this.rts * EoverFy * sq2 / 12; // feet
     }
 
-    // Beam Equations
+    // Beam Equations  ********************************
     calcPlasticMoment(){
         this.plasticMoment = this.zx * this.fy;
         return plasticMoment;
