@@ -43,7 +43,11 @@ class BeamWF{
     }
 
     calcLr(){
-        this.Lr = 1.95 * "Finish this"
+        const JoverS = this.J * this.c / (this.Sx * this.ho);
+        const EoverFy = this.E / (0.7 * this.Fy);
+        const sq1 = Math.sqrt(Math.pow(JoverS,2) + 6.76 * Math.pow(1 / EoverFy,2));
+        const sq2 = Math.sqrt(JoverS + sq1);
+        this.Lr = 1.95 * this.rts * EoverFy * sq2 / 12; // feet
     }
 
     // Beam Equations

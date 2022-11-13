@@ -11,9 +11,12 @@ const calcButton = document.getElementById("calc-button");
 const momentUtilElement = document.getElementById("moment-util");
 const kipFtUnits = document.getElementById("kip-ft-units")
 const shapeSelector = document.getElementById("shape-selector");
+
+// Beam Props
 const zxPropSpan = document.getElementById("Zx");
 const ixPropSpan = document.getElementById("Ix");
 const lpPropSpan = document.getElementById("Lp");
+const lrPropSpan = document.getElementById("Lr");
 const propUnits = document.getElementsByClassName("propUnits");
 
 
@@ -54,7 +57,7 @@ function calculateMoment() {
         alert('Enter a length and a load to calculate.');
     } else {
         const moment = linearLoad * (length ** 2) / 8;
-        ultMomentEl.innerHTML = moment;
+        ultMomentEl.innerHTML = moment.toFixed(2);
         kipFtUnits.style.display = "inline"
         checkCapcity();
     }
@@ -96,15 +99,18 @@ function shapeSelected() {
     const zx = BEAM.Zx;
     const ix = BEAM.Ix;
     const lp = BEAM.Lp;
+    const lr = BEAM.Lr;
     // const zx = parseFloat(shapesJSON['W'][beam]['Zx']);
     // const ix = parseFloat(shapesJSON['W'][beam]['Ix']);
 
     zxPropSpan.innerHTML = zx
     ixPropSpan.innerHTML = ix
-    lpPropSpan.innerHTML = lp
+    lpPropSpan.innerHTML = lp.toFixed(2)
+    lrPropSpan.innerHTML = lr.toFixed(2)
+
 
     const phiMn = calcFactoredMoment(zx, FY) / 12; // kip-ft
-    momentCapcityEl.innerHTML = phiMn;
+    momentCapcityEl.innerHTML = phiMn.toFixed(2);
 
     for (let i=0; i < propUnits.length; i++){
         propUnits[i].style.display = "inline";
