@@ -22,7 +22,8 @@
                     <li>Enter the length of the beam.</li>
                     <li>Enter the factored linear load applied to the beam.</li>
                     <li>Select the desired beam size.</li>
-                    <li>Click the 'Calculate' button to show the design results.</li>
+                    <!-- <li>Click the 'Calculate' button to show the design results.</li> -->
+                    <li>Verify that the utilization is acceptable for the design case.</li>
                 </ol>
             </p>
         </div>
@@ -32,12 +33,12 @@
                 <form action="">
                     <div class="input-div">
                         <label for="length">Length: L = </label>
-                        <input id="length" type="number" required min="0">
+                        <input id="length" type="number" required min="1" value="1">
                         <label>ft</label>
                     </div>
                     <div class="input-div">
                         <label for="linear-load">Linear Load: w<sub>u</sub> = </label>
-                        <input id="linear-load" type="number" required min="0">
+                        <input id="linear-load" type="number" required min="0" value="1">
                         <label>kips/ft</label>
                     </div>
                 </form>
@@ -74,9 +75,9 @@
                 </div>
             </div>
         </main>
-        <div class="center">
+        <!-- <div class="center">
             <button id="calc-button" type="button">Calculate</button>
-        </div>
+        </div> -->
     </div>
     <footer>
         <p>&copy; Paul Numbers 2022</p>

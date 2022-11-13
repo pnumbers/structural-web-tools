@@ -6,8 +6,8 @@ import shapesJSON from './asic_shapes.js';
 const lengthEntry = document.getElementById("length");
 const loadEntry = document.getElementById("linear-load");
 const ultMomentEl = document.getElementById("ult-moment");
-const momentCapcityEl = document.getElementById("moment-capacity");
-const calcButton = document.getElementById("calc-button");
+const momentCapacityEl = document.getElementById("moment-capacity");
+// const calcButton = document.getElementById("calc-button");
 const momentUtilElement = document.getElementById("moment-util");
 const kipFtUnits = document.getElementById("kip-ft-units")
 const shapeSelector = document.getElementById("shape-selector");
@@ -20,21 +20,29 @@ const lrPropSpan = document.getElementById("Lr");
 const propUnits = document.getElementsByClassName("propUnits");
 
 
+// Add event listeners
+lengthEntry.addEventListener("change", lengthChanged);
+loadEntry.addEventListener("change", loadChanged)
+// calcButton.addEventListener("click", calculateMoment);
+shapeSelector.addEventListener("change", shapeSelected);
+
+
+// Initial Set up
+addShapesToDropDown();
+const inital_shape = getShape();
+const intial_length = parseFloat(lengthEntry.value);
+
+
 // Global variables
 // TODO: Change this to an input
 const FY = 50; //ksi
-const BEAM = new BeamWF();
-BEAM.setFy(FY);
+const BEAM = new BeamWF(inital_shape, FY, intial_length);
 
-// Main script 
-addShapesToDropDown();
-shapeSelected();
 
-BEAM.calcLp();
-console.log(BEAM);
-
-calcButton.addEventListener("click", calculateMoment);
-shapeSelector.addEventListener("change", shapeSelected);
+// Display beam data after a beam instance has been initalized
+displayBeamData();
+// TODO: Change this to be a different function
+loadChanged();
 
 
 // Set up functions
@@ -44,8 +52,19 @@ function addShapesToDropDown(){
        let option = document.createElement("option");
         option.value = shape;
         option.innerHTML = shape;
-        shapeSelector.appendChild(option)
+        shapeSelector.appendChild(option);
     }
+}
+
+function lengthChanged() {
+    const length = parseFloat(lengthEntry.value);
+    BEAM.setLength(length);
+    calculateMoment();
+    // BEAM.
+}
+
+function loadChanged() {
+    calculateMoment();
 }
 
 // Functions relating to the calculating the applied
@@ -58,7 +77,7 @@ function calculateMoment() {
     } else {
         const moment = linearLoad * (length ** 2) / 8;
         ultMomentEl.innerHTML = moment.toFixed(2);
-        kipFtUnits.style.display = "inline"
+        kipFtUnits.style.display = "inline";
         checkCapcity();
     }
 }
@@ -70,7 +89,7 @@ function checkCapcity() {
 
 function calcMomentUtilization() {
     const ultMoment = parseFloat(ultMomentEl.innerHTML);
-    let momentCapacity = momentCapcityEl.innerHTML;
+    let momentCapacity = momentCapacityEl.innerHTML;
     if (momentCapacity && momentCapacity !== 'N/A') {
         momentCapacity = parseFloat(momentCapacity);
     }
@@ -89,55 +108,37 @@ function colorUtilization(util) {
     }
 }
 
-function shapeSelected() {
-    // Displays the selected beam's properties to the UI
-    // and adds them to the DOM
-    // TODO: Add beam to the DOM
+function getShape(){
     const beam = shapeSelector.value;
     const shape_data = shapesJSON['W'][beam];
+    return shape_data;
+}
+
+function shapeSelected() {
+    const shape_data = getShape()
     BEAM.setShape(shape_data);
+    displayBeamData();
+    checkCapcity();
+}
+
+function displayBeamData() {
+    // Displays the selected beam's properties to the UI
+    // and adds them to the DOM
     const zx = BEAM.Zx;
     const ix = BEAM.Ix;
     const lp = BEAM.Lp;
     const lr = BEAM.Lr;
-    // const zx = parseFloat(shapesJSON['W'][beam]['Zx']);
-    // const ix = parseFloat(shapesJSON['W'][beam]['Ix']);
-
+    
     zxPropSpan.innerHTML = zx
     ixPropSpan.innerHTML = ix
     lpPropSpan.innerHTML = lp.toFixed(2)
     lrPropSpan.innerHTML = lr.toFixed(2)
 
-
-    const phiMn = calcFactoredMoment(zx, FY) / 12; // kip-ft
-    momentCapcityEl.innerHTML = phiMn.toFixed(2);
+    const phiMn = BEAM.phiMn; // kip-ft
+    momentCapacityEl.innerHTML = phiMn.toFixed(2);
 
     for (let i=0; i < propUnits.length; i++){
         propUnits[i].style.display = "inline";
     }
 
-}
-
-// Functions related to calculating the beam's moment
-// capacity
-function calcPlasticMoment(zx, fy){
-    // zx (in^3)
-    // fy (ksi)
-    const plasticMoment = zx * fy;
-    return plasticMoment;
-}
-
-function calcNominalMoment(zx, fy){
-    // const zx = ; // in in^3
-    // const fy = 50; // in ksi
-    const plasticMoment = calcPlasticMoment(zx, fy);
-    const mn = Math.min(plasticMoment);
-    return mn;
-}
-
-function calcFactoredMoment(zx, fy){
-    const phi = 0.9;
-    const mn = calcNominalMoment(zx, fy);
-    const phiMn = phi * mn;
-    return phiMn;
 }

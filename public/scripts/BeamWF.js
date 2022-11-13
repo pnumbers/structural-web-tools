@@ -1,10 +1,12 @@
 class BeamWF{
-    constructor(shape_data, Fy = 50){
+    constructor(shape_data, Fy = 50, length){
         this.E = 29000 // ksi
         this.Fy = Fy;
-        if (arguments.length > 0){
-            this.setShape(shape_data)
-        }
+        this.setLength(length);
+        this.setShape(shape_data)
+        // if (arguments.length > 0){
+        //     this.setShape(shape_data)
+        // }
     }
     // Setters 
     setShape(shape_data){
@@ -19,14 +21,21 @@ class BeamWF{
         this.ho = parseFloat(shape_data.ho);
         this.rts = parseFloat(shape_data.rts);
 
-        console.log(shape_data)
+        // console.log(shape_data)
         
         // For WF beams, c = 1.0 always
         this.c = 1; 
 
+        // TODO: Add true Cb calc
+        this.Cb = 1.0
+
         // Derived properties
         this.calcLp();
         this.calcLr();
+        this.calcFcr();
+
+        // Calc Capacity
+        this.calcFactoredMoment()
     }
 
     // Set functions **********************************
@@ -51,16 +60,25 @@ class BeamWF{
         this.Lr = 1.95 * this.rts * EoverFy * sq2 / 12; // feet
     }
 
+    calcFcr(){
+        if (this.Lb > 0){
+            const Lb_sq = Math.pow((this.Lb * 12 / this.rts),2);
+            const JoverS = this.J * this.c / (this.Sx * this.ho);  
+            const sq = Math.sqrt(1 + 0.078 * JoverS * Lb_sq);
+            this.Fcr = this.Cb * Math.pow(Math.PI,2) * this.E * sq / Lb_sq;
+        }
+    }
+
     // Beam Equations  ********************************
     calcPlasticMoment(){
-        this.plasticMoment = this.zx * this.fy;
-        return plasticMoment;
+        this.plasticMoment = this.Zx * this.Fy;
+        return this.plasticMoment;
     }
 
     calcNominalMoment(){
         this.calcPlasticMoment();
-        this.mn = Math.min(this.plasticMoment);
-        return this.mn;
+        this.Mn = Math.min(this.plasticMoment);
+        return this.Mn;
     }
 
     calcFactoredMoment(){
@@ -68,8 +86,8 @@ class BeamWF{
         // TODO: Add a way to change 0.9
         this.phi = 0.9;
         this.calcNominalMoment();
-        this.phiMn = this.phi * this.mn;
-        return phiMn;
+        this.phiMn = this.phi * this.Mn / 12;
+        return this.phiMn;
     }
 }
 
