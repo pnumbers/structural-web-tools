@@ -13,9 +13,9 @@ As such, major functionality is currently being developed. See the development g
 ## Current Development Goals
 
 - Beam Design Tool
-  - Completely calculate Phi\*Mn
-  - Add more beam shape types
-  - Add input for custom fy value
+  - Calculate Phi\*Mn for all WF beam sections
+  - Add more beam shape types (HSS, C, ect.)
+  - Add input for custom Fy value
   - Show more beam properties
 - Column Design Tool
   - Create tool to aid in column design that is similar to the beam design tool
