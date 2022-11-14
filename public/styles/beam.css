@@ -115,6 +115,12 @@ footer p{
     margin-left: 10px;
 }
 
+#yield-strength {
+    width: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
 .input-div {
     display: flex;
     /* justify-content: center; */

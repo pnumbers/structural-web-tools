@@ -35,18 +35,21 @@
         <main class="typ-text-bg">
             <div id="inputs-cont">
                 <h2 class="">User Inputs</h2>
-                <form action="">
-                    <div class="input-div">
-                        <label for="length">Length: L = </label>
-                        <input id="length" type="number" required min="1" value="1">
-                        <label>ft</label>
-                    </div>
-                    <div class="input-div">
-                        <label for="linear-load">Linear Load: w<sub>u</sub> = </label>
-                        <input id="linear-load" type="number" required min="0" value="1">
-                        <label>kips/ft</label>
-                    </div>
-                </form>
+                <div class="input-div">
+                    <label for="length">Yield Strength: F<sub>y</sub> = </label>
+                    <input id="yield-strength" type="number" required min="1" value="50">
+                    <label>ksi</label>
+                </div>
+                <div class="input-div">
+                    <label for="length">Length: L = </label>
+                    <input id="length" type="number" required min="1" value="1">
+                    <label>ft</label>
+                </div>
+                <div class="input-div">
+                    <label for="linear-load">Linear Load: w<sub>u</sub> = </label>
+                    <input id="linear-load" type="number" required min="0" value="1">
+                    <label>kips/ft</label>
+                </div>
             </div>
 
             <div id="beam-cont">

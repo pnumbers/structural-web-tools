@@ -5,6 +5,7 @@ import shapesJSON from './asic_shapes.js';
 // DOM Variables
 const lengthEntry = document.getElementById("length");
 const loadEntry = document.getElementById("linear-load");
+const yieldStrengthEntry = document.getElementById("yield-strength");
 const ultMomentEl = document.getElementById("ult-moment");
 const momentCapacityEl = document.getElementById("moment-capacity");
 // const calcButton = document.getElementById("calc-button");
