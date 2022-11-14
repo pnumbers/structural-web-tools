@@ -41,10 +41,21 @@ class BeamWF{
     // Set functions **********************************
     setFy(Fy){
         this.Fy = Fy;
+        this.calcLp();
+        this.calcLr();
+        this.calcFcr();
+        this.calcFactoredMoment();
     }
 
     setLength(beam_length){
-        this.Lb = beam_length;
+        if (!this.Lb) {
+            this.Lb = beam_length;
+        }
+        else {
+            this.Lb = beam_length;
+            this.calcFcr();
+            this.calcFactoredMoment();
+        }
     }
 
     // Properties Equations ***************************
@@ -69,15 +80,30 @@ class BeamWF{
         }
     }
 
+    calcLtbMoment(){
+        if (this.Lb < this.Lp) {
+            this.Mn_LTB = this.Mp;
+        } 
+        else if (this.Lb < this.Lr) {
+            const ratio = (this.Lb - this.Lp) / (this.Lr - this.Lp);
+            this.Mn_LTB = this.Cb * (this.Mp - (this.Mp - 0.7 * this.Fy * this.Sx) * (ratio));
+        }
+        else {
+            this.Mn_LTB = this.Fcr * this.Sx;
+        }
+        return this.Mn_LTB;
+    }
+
     // Beam Equations  ********************************
     calcPlasticMoment(){
-        this.plasticMoment = this.Zx * this.Fy;
-        return this.plasticMoment;
+        this.Mp = this.Zx * this.Fy;
+        return this.Mp;
     }
 
     calcNominalMoment(){
         this.calcPlasticMoment();
-        this.Mn = Math.min(this.plasticMoment);
+        this.calcLtbMoment();
+        this.Mn = Math.min(this.Mp, this.Mn_LTB);
         return this.Mn;
     }
 
@@ -86,7 +112,7 @@ class BeamWF{
         // TODO: Add a way to change 0.9
         this.phi = 0.9;
         this.calcNominalMoment();
-        this.phiMn = this.phi * this.Mn / 12;
+        this.phiMn = this.phi * this.Mn / 12; //kip-ft
         return this.phiMn;
     }
 }

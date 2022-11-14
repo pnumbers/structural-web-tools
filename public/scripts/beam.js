@@ -59,6 +59,7 @@ function addShapesToDropDown(){
 function lengthChanged() {
     const length = parseFloat(lengthEntry.value);
     BEAM.setLength(length);
+    updateMomentCapacity();
     calculateMoment();
     // BEAM.
 }
@@ -121,6 +122,11 @@ function shapeSelected() {
     checkCapcity();
 }
 
+function updateMomentCapacity(){
+    const phiMn = BEAM.phiMn; // kip-ft
+    momentCapacityEl.innerHTML = phiMn.toFixed(2);
+}
+
 function displayBeamData() {
     // Displays the selected beam's properties to the UI
     // and adds them to the DOM
@@ -134,9 +140,11 @@ function displayBeamData() {
     lpPropSpan.innerHTML = lp.toFixed(2)
     lrPropSpan.innerHTML = lr.toFixed(2)
 
-    const phiMn = BEAM.phiMn; // kip-ft
-    momentCapacityEl.innerHTML = phiMn.toFixed(2);
+    updateMomentCapacity()
 
+    // TODO: Scrap this. Beam data is shwon from
+    // the start now so there isn't a time when units
+    // shouldnt be present
     for (let i=0; i < propUnits.length; i++){
         propUnits[i].style.display = "inline";
     }
