@@ -23,7 +23,8 @@ const propUnits = document.getElementsByClassName("propUnits");
 
 // Add event listeners
 lengthEntry.addEventListener("change", lengthChanged);
-loadEntry.addEventListener("change", loadChanged)
+loadEntry.addEventListener("change", loadChanged);
+yieldStrengthEntry.addEventListener("change", yieldstregnthChanged);
 // calcButton.addEventListener("click", calculateMoment);
 shapeSelector.addEventListener("change", shapeSelected);
 
@@ -67,6 +68,13 @@ function lengthChanged() {
 
 function loadChanged() {
     calculateMoment();
+}
+
+function yieldstregnthChanged(){
+    const Fy = yieldStrengthEntry.value;
+    BEAM.setFy(Fy);
+    updateMomentCapacity();
+    displayBeamData();
 }
 
 // Functions relating to the calculating the applied
