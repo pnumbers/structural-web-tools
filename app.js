@@ -4,7 +4,7 @@ const path = require('path');
 const ejs = require('ejs')
 
 
-const PORT = 3000;
+// const PORT = 3000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
@@ -18,6 +18,8 @@ app.get('/beam-design', (req, res)=>{
     res.render('beam.ejs')
 })
 
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
     console.log(`Listening on port ${PORT}`);
 })
