@@ -4,6 +4,12 @@ Copyright (c) 2022 Paul Numbers
 
 A repo dedicated to structural engineering web-app tools.
 
+# Intro
+
+This webapp was built to provide tools that aid in structural engineering design.
+
+You can connect to the website at: https://structural-web-tools.herokuapp.com/
+
 ## Current Status: Pre-Alpha
 
 This project is a work in progress.
