@@ -15,6 +15,7 @@ const shapeSelector = document.getElementById("shape-selector");
 
 // Beam Props
 const zxPropSpan = document.getElementById("Zx");
+const sxPropSpan = document.getElementById("Sx");
 const ixPropSpan = document.getElementById("Ix");
 const lpPropSpan = document.getElementById("Lp");
 const lrPropSpan = document.getElementById("Lr");
@@ -140,11 +141,13 @@ function displayBeamData() {
     // Displays the selected beam's properties to the UI
     // and adds them to the DOM
     const zx = BEAM.Zx;
+    const sx = BEAM.Sx;
     const ix = BEAM.Ix;
     const lp = BEAM.Lp;
     const lr = BEAM.Lr;
     
     zxPropSpan.innerHTML = zx
+    sxPropSpan.innerHTML = sx
     ixPropSpan.innerHTML = ix
     lpPropSpan.innerHTML = lp.toFixed(2)
     lrPropSpan.innerHTML = lr.toFixed(2)
